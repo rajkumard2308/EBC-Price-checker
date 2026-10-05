@@ -9,7 +9,7 @@
 <style>
 
 /* =========================================================
-   GLOBAL
+   PREMIUM OBSIDIAN THEME
 ========================================================= */
 
 * {
@@ -32,30 +32,68 @@ body {
         Arial,
         sans-serif;
 
+    color: #f4f5f7;
+
     background:
         radial-gradient(
-            circle at 50% -15%,
-            rgba(255, 55, 55, 0.12),
-            transparent 38%
+            ellipse 80% 45% at 50% -10%,
+            rgba(112, 174, 207, 0.12),
+            transparent 65%
         ),
         radial-gradient(
-            circle at 100% 30%,
-            rgba(255, 180, 60, 0.05),
-            transparent 30%
+            ellipse 45% 35% at 95% 15%,
+            rgba(211, 176, 106, 0.07),
+            transparent 65%
         ),
-        #050505;
-
-    color: #f5f5f5;
+        radial-gradient(
+            ellipse 40% 35% at 5% 80%,
+            rgba(88, 135, 165, 0.06),
+            transparent 65%
+        ),
+        #07080a;
 
     overflow-x: hidden;
 }
 
 
 /* =========================================================
-   BACKGROUND EFFECT
+   AMBIENT BACKGROUND
 ========================================================= */
 
 body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 650px;
+    height: 650px;
+
+    top: -350px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(145, 205, 231, 0.08),
+            transparent 68%
+        );
+
+    filter: blur(25px);
+
+    pointer-events: none;
+
+    animation:
+        ambientGlow 9s ease-in-out infinite alternate;
+
+    z-index: -2;
+}
+
+
+body::after {
     content: "";
 
     position: fixed;
@@ -65,27 +103,16 @@ body::before {
 
     background:
         linear-gradient(
-            120deg,
+            115deg,
             transparent 0%,
-            rgba(255,255,255,0.015) 45%,
-            transparent 70%
+            rgba(255,255,255,0.012) 45%,
+            transparent 65%
         );
 
-    animation: backgroundMove 10s ease-in-out infinite alternate;
+    animation:
+        lightSweep 12s ease-in-out infinite alternate;
 
     z-index: -1;
-}
-
-@keyframes backgroundMove {
-
-    from {
-        transform: translateX(-3%);
-    }
-
-    to {
-        transform: translateX(3%);
-    }
-
 }
 
 
@@ -94,11 +121,12 @@ body::before {
 ========================================================= */
 
 .container {
-    max-width: 1200px;
+    max-width: 1120px;
 
     margin: auto;
 
-    padding: 55px 28px 60px;
+    padding:
+        58px 28px 70px;
 }
 
 
@@ -111,347 +139,412 @@ body::before {
 
     align-items: center;
 
-    gap: 18px;
+    gap: 17px;
+
+    opacity: 0;
 
     animation:
-        headerEnter
-        0.8s
-        cubic-bezier(.2,.8,.2,1)
-        both;
+        headerReveal
+        0.9s
+        cubic-bezier(.16,1,.3,1)
+        0.1s
+        forwards;
 }
 
 
 .hotel-icon {
-    width: 58px;
-    height: 58px;
+    position: relative;
+
+    width: 62px;
+    height: 62px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     background:
         linear-gradient(
             145deg,
-            #1d1d1d,
-            #0c0c0c
+            rgba(35,39,43,0.95),
+            rgba(15,17,20,0.95)
         );
 
-    border: 1px solid rgba(255,255,255,0.10);
+    border:
+        1px solid
+        rgba(255,255,255,0.11);
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.06);
+        0 18px 45px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.08);
 
     font-size: 35px;
 
+    overflow: hidden;
+
     animation:
-        mountainFloat
-        4s
+        iconFloat
+        5s
         ease-in-out
         infinite;
 }
 
 
+/* subtle icon glow */
+
+.hotel-icon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(132,198,225,0.14);
+
+    filter: blur(16px);
+
+    pointer-events: none;
+}
+
+
 .title {
-    font-size: 42px;
+    font-size: 43px;
 
     font-weight: 800;
 
-    letter-spacing: -1.2px;
+    letter-spacing: -1.7px;
 
-    color: #ffffff;
+    color: #f7f7f8;
 }
 
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
 
 .subtitle {
-    font-size: 22px;
+    font-size: 20px;
 
-    font-weight: 600;
+    font-weight: 550;
+
+    color: #9da2a8;
 
     margin:
-        8px 0 35px;
+        9px 0 42px 79px;
 
-    color: #bdbdbd;
+    opacity: 0;
 
     animation:
-        subtitleEnter
-        0.9s
-        ease
-        both;
+        fadeUp
+        0.8s
+        cubic-bezier(.16,1,.3,1)
+        0.35s
+        forwards;
 }
 
-
-/* red underline */
 
 .subtitle::after {
     content: "";
 
     display: block;
 
-    width: 70px;
-    height: 3px;
+    width: 52px;
+    height: 2px;
 
-    margin-top: 12px;
+    margin-top: 15px;
 
-    border-radius: 10px;
+    border-radius: 20px;
 
     background:
         linear-gradient(
             90deg,
-            #ff3f3f,
-            #ff7777
+            #d6b36a,
+            #8ccbe8
         );
 
     box-shadow:
-        0 0 15px rgba(255,60,60,0.35);
+        0 0 14px
+        rgba(190,165,105,0.20);
 
     animation:
-        lineGrow
-        1s
+        lineReveal
+        0.8s
         ease
+        0.7s
         both;
 }
 
 
 /* =========================================================
-   DATE SECTION
+   DATE GRID
 ========================================================= */
 
 .date-grid {
-
     display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 60px;
+    gap: 35px;
 
-    margin-bottom: 34px;
+    margin-bottom: 27px;
+
+    opacity: 0;
 
     animation:
-        fieldsEnter
-        0.9s
-        0.15s
-        ease
-        both;
+        fadeUp
+        0.85s
+        cubic-bezier(.16,1,.3,1)
+        0.5s
+        forwards;
 }
 
 
 .field label {
-
     display: block;
 
-    font-size: 15px;
+    margin-bottom: 10px;
 
-    font-weight: 600;
+    color: #b8bdc3;
 
-    margin-bottom: 9px;
+    font-size: 13px;
 
-    color: #c9c9c9;
+    font-weight: 650;
+
+    letter-spacing: 0.45px;
+
+    text-transform: uppercase;
 }
 
 
 .field input {
-
     width: 100%;
 
-    height: 52px;
+    height: 57px;
+
+    padding:
+        0 17px;
 
     border:
         1px solid
-        #292929;
+        rgba(255,255,255,0.10);
 
-    border-radius: 10px;
+    border-radius: 13px;
+
+    outline: none;
+
+    color: #f2f4f5;
 
     background:
         linear-gradient(
             145deg,
-            #181818,
-            #101010
+            rgba(28,31,34,0.88),
+            rgba(17,19,22,0.92)
         );
 
-    color: #ffffff;
-
-    padding:
-        0 14px;
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.035),
+        0 12px 30px
+        rgba(0,0,0,0.18);
 
     font-size: 15px;
 
-    outline: none;
-
     transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease,
-        background 0.25s ease;
+        border-color .3s ease,
+        box-shadow .3s ease,
+        transform .3s ease,
+        background .3s ease;
 }
 
 
 .field input:hover {
-
     border-color:
-        #3d3d3d;
-
-}
-
-
-.field input:focus {
-
-    border-color:
-        #ff4242;
-
-    background:
-        #151515;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(255,60,60,0.10),
-
-        0 8px 25px
-        rgba(0,0,0,0.35);
+        rgba(255,255,255,0.18);
 
     transform:
         translateY(-1px);
 }
 
 
+.field input:focus {
+    border-color:
+        rgba(145,205,231,0.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(31,35,39,0.95),
+            rgba(18,21,24,0.98)
+        );
+
+    box-shadow:
+        0 0 0 3px
+        rgba(140,203,232,0.07),
+
+        0 14px 35px
+        rgba(0,0,0,0.30);
+
+    transform:
+        translateY(-2px);
+}
+
+
 .field input::-webkit-calendar-picker-indicator {
-
-    filter: invert(1);
-
-    opacity: 0.8;
+    filter:
+        invert(1)
+        opacity(.75);
 
     cursor: pointer;
-
 }
 
 
 /* =========================================================
-   SEARCH BUTTON
+   CHECK AVAILABILITY BUTTON
 ========================================================= */
 
 .search-button {
-
     position: relative;
 
     width: 100%;
 
-    min-height: 52px;
+    min-height: 57px;
 
-    border: 0;
+    margin-bottom: 28px;
 
-    border-radius: 10px;
+    border:
+        1px solid
+        rgba(214,179,106,0.35);
+
+    border-radius: 13px;
+
+    color: #f7f5ef;
 
     background:
         linear-gradient(
             135deg,
-            #ff4b4b,
-            #e32626
+            #c9a35d 0%,
+            #ad8749 45%,
+            #d4b36c 100%
         );
 
-    color: #ffffff;
+    box-shadow:
+        0 14px 35px
+        rgba(0,0,0,0.35),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.25);
 
     font-size: 16px;
 
-    font-weight: 650;
+    font-weight: 700;
+
+    letter-spacing: 0.1px;
 
     cursor: pointer;
 
-    margin-bottom: 26px;
-
     overflow: hidden;
 
-    box-shadow:
-        0 10px 28px
-        rgba(255,55,55,0.18);
-
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+
+    opacity: 0;
 
     animation:
-        buttonEnter
-        0.9s
-        0.25s
-        ease
-        both;
+        buttonReveal
+        .8s
+        cubic-bezier(.16,1,.3,1)
+        .7s
+        forwards;
 }
 
 
-/* animated shine */
+/* moving highlight */
 
 .search-button::before {
-
     content: "";
 
     position: absolute;
 
     top: 0;
+    left: -130%;
 
-    left: -120%;
-
-    width: 65%;
-
+    width: 75%;
     height: 100%;
 
     background:
         linear-gradient(
-            90deg,
+            100deg,
             transparent,
-            rgba(255,255,255,0.20),
+            rgba(255,255,255,0.25),
             transparent
         );
 
     transform:
-        skewX(-20deg);
+        skewX(-22deg);
 
-    transition:
-        left 0.7s ease;
+    animation:
+        buttonShine
+        4s
+        ease-in-out
+        1.5s
+        infinite;
 }
 
 
-.search-button:hover::before {
+.search-button::after {
+    content: "";
 
-    left: 150%;
+    position: absolute;
 
+    inset: 0;
+
+    border-radius: inherit;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,0.08);
+
+    pointer-events: none;
 }
 
 
 .search-button:hover {
-
     transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 15px 35px
-        rgba(255,55,55,0.28);
+        translateY(-3px);
 
     filter:
         brightness(1.06);
 
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,0.45),
+
+        0 0 28px
+        rgba(210,174,99,0.12);
 }
 
 
 .search-button:active {
-
     transform:
-        translateY(0);
-
+        translateY(-1px);
 }
 
 
 .search-button:disabled {
-
-    opacity: 0.72;
+    opacity: .72;
 
     cursor: wait;
 
     transform: none;
-
 }
 
 
@@ -460,77 +553,82 @@ body::before {
 ========================================================= */
 
 .alert {
-
     padding:
-        20px 18px;
-
-    border-radius: 10px;
+        18px 20px;
 
     margin-bottom: 36px;
 
-    font-size: 16px;
+    border-radius: 13px;
+
+    font-size: 15px;
+
+    font-weight: 550;
 
     animation:
-        alertEnter
-        0.45s
-        cubic-bezier(.2,.8,.2,1)
-        both;
+        alertReveal
+        .5s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
 }
 
 
 .success {
+    color:
+        #86e5b0;
 
     background:
-        rgba(35, 190, 100, 0.10);
-
-    color:
-        #48e58b;
+        linear-gradient(
+            135deg,
+            rgba(40,130,82,0.14),
+            rgba(20,70,45,0.08)
+        );
 
     border:
         1px solid
-        rgba(70,220,130,0.18);
+        rgba(89,196,132,0.22);
 
     box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.15);
-
+        0 10px 30px
+        rgba(0,0,0,0.16);
 }
 
 
 .error {
+    color:
+        #ffaaa5;
 
     background:
-        rgba(255,60,60,0.10);
-
-    color:
-        #ff7777;
+        linear-gradient(
+            135deg,
+            rgba(150,50,45,0.14),
+            rgba(80,25,25,0.08)
+        );
 
     border:
         1px solid
-        rgba(255,60,60,0.20);
-
+        rgba(220,100,95,0.22);
 }
 
 
 .warning {
+    color:
+        #e9c978;
 
     background:
-        rgba(255,193,7,0.09);
-
-    color:
-        #ffd45c;
+        linear-gradient(
+            135deg,
+            rgba(160,125,48,0.13),
+            rgba(80,60,20,0.07)
+        );
 
     border:
         1px solid
-        rgba(255,193,7,0.18);
-
+        rgba(205,169,82,0.22);
 }
 
 
 .hidden {
-
     display: none;
-
 }
 
 
@@ -539,30 +637,30 @@ body::before {
 ========================================================= */
 
 .loading {
-
     display:
         inline-flex;
 
     align-items:
         center;
 
-    gap:
-        8px;
+    justify-content:
+        center;
 
+    gap:
+        9px;
 }
 
 
 .spinner {
-
     width:
-        15px;
+        16px;
 
     height:
-        15px;
+        16px;
 
     border:
         2px solid
-        rgba(255,255,255,0.35);
+        rgba(255,255,255,0.30);
 
     border-top-color:
         #ffffff;
@@ -572,99 +670,59 @@ body::before {
 
     animation:
         spin
-        0.8s
+        .75s
         linear
         infinite;
-
 }
 
 
 /* =========================================================
    ROOM AVAILABILITY SUMMARY
-   DO NOT CHANGE
+   🔒 KEEPING THIS SECTION UNCHANGED
 ========================================================= */
 
 .summary-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 17px;
-
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:17px;
 }
-
 
 .summary-title {
-
-    font-size: 30px;
-
-    font-weight: 750;
-
+    font-size:30px;
+    font-weight:750;
 }
-
 
 .copy-button {
-
-    min-width: 42px;
-
-    height: 42px;
-
-    border:
-        1px solid
-        rgba(128,128,128,.45);
-
-    border-radius: 8px;
-
-    background: transparent;
-
+    min-width:42px;
+    height:42px;
+    border:1px solid rgba(128,128,128,.45);
+    border-radius:8px;
+    background:transparent;
+    font-size:18px;
+    cursor:pointer;
+    padding:0 10px;
+    white-space:nowrap;
     color: inherit;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    padding: 0 10px;
-
-    white-space: nowrap;
-
 }
-
 
 .copy-button.copied {
-
-    min-width: 88px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
+    min-width:88px;
+    font-size:14px;
+    font-weight:600;
 }
-
 
 .summary-intro {
-
-    font-size: 16px;
-
-    font-weight: 600;
-
-    line-height: 1.5;
-
-    margin-bottom: 10px;
-
+    font-size:16px;
+    font-weight:600;
+    line-height:1.5;
+    margin-bottom:10px;
 }
 
-
 .room-line {
-
-    font-size: 16px;
-
-    line-height: 1.5;
-
-    margin: 0;
-
+    font-size:16px;
+    line-height:1.5;
+    margin:0;
 }
 
 
@@ -673,168 +731,168 @@ body::before {
 ========================================================= */
 
 @keyframes spin {
-
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
-
 }
 
 
-@keyframes headerEnter {
+@keyframes headerReveal {
 
     from {
-
         opacity: 0;
 
         transform:
-            translateY(-20px);
-
+            translateY(-25px)
+            scale(.97);
     }
 
     to {
+        opacity: 1;
 
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
         opacity: 1;
 
         transform:
             translateY(0);
-
     }
-
 }
 
 
-@keyframes subtitleEnter {
+@keyframes buttonReveal {
 
     from {
-
         opacity: 0;
 
         transform:
-            translateY(12px);
-
+            translateY(20px)
+            scale(.985);
     }
 
     to {
-
         opacity: 1;
 
         transform:
-            translateY(0);
-
+            translateY(0)
+            scale(1);
     }
-
 }
 
 
-@keyframes fieldsEnter {
+@keyframes alertReveal {
 
     from {
-
         opacity: 0;
 
         transform:
-            translateY(18px);
-
+            translateY(-8px)
+            scale(.985);
     }
 
     to {
-
         opacity: 1;
 
         transform:
-            translateY(0);
-
+            translateY(0)
+            scale(1);
     }
-
 }
 
 
-@keyframes buttonEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(18px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-@keyframes alertEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(-8px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-@keyframes mountainFloat {
+@keyframes iconFloat {
 
     0%,
     100% {
-
         transform:
             translateY(0);
-
     }
 
     50% {
-
         transform:
-            translateY(-4px);
-
+            translateY(-5px);
     }
-
 }
 
 
-@keyframes lineGrow {
+@keyframes ambientGlow {
 
     from {
+        transform:
+            translateX(-50%)
+            scale(.95);
 
-        width: 0;
-
-        opacity: 0;
-
+        opacity: .65;
     }
 
     to {
-
-        width: 70px;
+        transform:
+            translateX(-50%)
+            scale(1.08);
 
         opacity: 1;
+    }
+}
 
+
+@keyframes lightSweep {
+
+    from {
+        transform:
+            translateX(-3%);
     }
 
+    to {
+        transform:
+            translateX(3%);
+    }
+}
+
+
+@keyframes lineReveal {
+
+    from {
+        width: 0;
+
+        opacity: 0;
+    }
+
+    to {
+        width: 52px;
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes buttonShine {
+
+    0% {
+        left: -130%;
+    }
+
+    25% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
 }
 
 
@@ -845,70 +903,69 @@ body::before {
 @media(max-width:768px) {
 
     .container {
-
         padding:
-            30px 18px 40px;
-
+            32px 18px 45px;
     }
 
 
-    .title {
-
-        font-size:
-            30px;
-
+    .header {
+        gap: 13px;
     }
 
 
     .hotel-icon {
+        width: 50px;
+        height: 50px;
 
-        width:
-            48px;
+        border-radius: 15px;
 
-        height:
-            48px;
+        font-size: 28px;
+    }
 
-        font-size:
-            28px;
 
+    .title {
+        font-size: 29px;
+
+        letter-spacing:
+            -1px;
     }
 
 
     .subtitle {
+        margin:
+            9px 0 32px 63px;
 
-        font-size:
-            19px;
-
+        font-size: 17px;
     }
 
 
     .date-grid {
-
         grid-template-columns:
             1fr;
 
-        gap:
-            20px;
+        gap: 19px;
+    }
 
+
+    .field input {
+        height: 54px;
+    }
+
+
+    .search-button {
+        min-height: 55px;
     }
 
 
     .summary-title {
-
-        font-size:
-            25px;
-
+        font-size: 25px;
     }
 
 
     .summary-intro,
     .room-line {
-
-        font-size:
-            15px;
-
+        font-size: 15px;
     }
-
 }
 
 
@@ -919,50 +976,37 @@ body::before {
 @media(max-width:420px) {
 
     .container {
-
         padding:
-            25px 15px 35px;
-
-    }
-
-
-    .title {
-
-        font-size:
-            25px;
-
-    }
-
-
-    .subtitle {
-
-        font-size:
-            17px;
-
+            25px 15px 40px;
     }
 
 
     .hotel-icon {
+        width: 45px;
+        height: 45px;
 
-        width:
-            44px;
+        font-size: 25px;
+    }
 
-        height:
-            44px;
+
+    .title {
+        font-size: 25px;
+    }
+
+
+    .subtitle {
+        margin-left:
+            58px;
 
         font-size:
-            25px;
-
+            16px;
     }
 
 
     .summary-title {
-
         font-size:
             22px;
-
     }
-
 }
 
 </style>
@@ -973,110 +1017,101 @@ body::before {
 
 <div class="container">
 
-    <!-- HEADER -->
+<div class="header">
 
-    <div class="header">
+    <div class="hotel-icon">
+        🏔️
+    </div>
 
-        <div class="hotel-icon">
-            🏔️
-        </div>
+    <div class="title">
+        Everest Base Camp
+    </div>
 
-        <div class="title">
-            Everest Base Camp
-        </div>
+</div>
+
+
+<div class="subtitle">
+    Room Availability &amp; Price Checker
+</div>
+
+
+<div class="date-grid">
+
+    <div class="field">
+
+        <label for="checkIn">
+            Check-in Date
+        </label>
+
+        <input
+            type="date"
+            id="checkIn"
+        >
 
     </div>
 
 
-    <div class="subtitle">
-        Room Availability &amp; Price Checker
-    </div>
+    <div class="field">
 
+        <label for="checkOut">
+            Check-out Date
+        </label>
 
-    <!-- DATE INPUTS -->
-
-    <div class="date-grid">
-
-        <div class="field">
-
-            <label for="checkIn">
-                Check-in Date
-            </label>
-
-            <input
-                type="date"
-                id="checkIn"
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label for="checkOut">
-                Check-out Date
-            </label>
-
-            <input
-                type="date"
-                id="checkOut"
-            >
-
-        </div>
+        <input
+            type="date"
+            id="checkOut"
+        >
 
     </div>
 
-
-    <!-- SEARCH BUTTON -->
-
-    <button
-        class="search-button"
-        id="searchButton"
-        onclick="checkAvailability()"
-    >
-        🔍 Check Availability
-    </button>
+</div>
 
 
-    <!-- ALERT -->
+<button
+    class="search-button"
+    id="searchButton"
+    onclick="checkAvailability()"
+>
+    🔍 Check Availability
+</button>
 
-    <div
-        id="alert"
-        class="alert hidden"
-    ></div>
+
+<div
+    id="alert"
+    class="alert hidden"
+></div>
 
 
-    <!-- =====================================================
-         ROOM AVAILABILITY SUMMARY
-         ORIGINAL STRUCTURE
-    ====================================================== -->
+<!-- =====================================================
+     ROOM AVAILABILITY SUMMARY
+     ORIGINAL SECTION
+====================================================== -->
 
-    <div
-        id="summary"
-        class="hidden"
-    >
+<div
+    id="summary"
+    class="hidden"
+>
 
-        <div class="summary-header">
+    <div class="summary-header">
 
-            <div class="summary-title">
-                Room Availability Summary
-            </div>
-
-            <button
-                id="copyButton"
-                class="copy-button"
-                onclick="copySummary()"
-                title="Copy Summary"
-            >
-                📋
-            </button>
-
+        <div class="summary-title">
+            Room Availability Summary
         </div>
 
-
-        <div id="summaryContent"></div>
+        <button
+            id="copyButton"
+            class="copy-button"
+            onclick="copySummary()"
+            title="Copy Summary"
+        >
+            📋
+        </button>
 
     </div>
+
+    <div id="summaryContent"></div>
+
+</div>
 
 </div>
 
@@ -1110,13 +1145,13 @@ const copyButton =
 
 
 /* =========================================================
-   DATE FUNCTIONS
+   DATE HELPERS
 ========================================================= */
 
 function toISODate(d) {
 
     return `${d.getFullYear()}-${String(
-        d.getMonth() + 1
+        d.getMonth()+1
     ).padStart(2,"0")}-${String(
         d.getDate()
     ).padStart(2,"0")}`;
@@ -1129,7 +1164,7 @@ function formatDate(d) {
     return `${String(
         d.getDate()
     ).padStart(2,"0")}-${String(
-        d.getMonth() + 1
+        d.getMonth()+1
     ).padStart(2,"0")}-${d.getFullYear()}`;
 
 }
@@ -1138,10 +1173,10 @@ function formatDate(d) {
 function nextDay(s) {
 
     const d =
-        new Date(s + "T00:00:00");
+        new Date(s+"T00:00:00");
 
     d.setDate(
-        d.getDate() + 1
+        d.getDate()+1
     );
 
     return toISODate(d);
@@ -1150,7 +1185,7 @@ function nextDay(s) {
 
 
 /* =========================================================
-   INITIAL DATE
+   INITIAL DATES
 ========================================================= */
 
 const today =
@@ -1160,7 +1195,7 @@ const tomorrow =
     new Date();
 
 tomorrow.setDate(
-    tomorrow.getDate() + 1
+    tomorrow.getDate()+1
 );
 
 checkIn.value =
@@ -1174,7 +1209,7 @@ checkIn.min =
 
 
 /* =========================================================
-   CHECK-IN CHANGE
+   DATE EVENTS
 ========================================================= */
 
 checkIn.addEventListener(
@@ -1193,10 +1228,6 @@ checkIn.addEventListener(
     }
 );
 
-
-/* =========================================================
-   CHECK-OUT CHANGE
-========================================================= */
 
 checkOut.addEventListener(
     "change",
@@ -1224,7 +1255,7 @@ checkOut.addEventListener(
 function showAlert(m,t) {
 
     alertBox.className =
-        "alert " + t;
+        "alert "+t;
 
     alertBox.textContent =
         m;
@@ -1261,10 +1292,10 @@ function getOccupants(n) {
 
 /* =========================================================
    ROOM LINE
-   ORIGINAL LOGIC
+   ORIGINAL
 ========================================================= */
 
-function buildRoomLine(r) {
+function buildRoomLine(r){
 
     let p =
         Number(r.price)
@@ -1273,55 +1304,55 @@ function buildRoomLine(r) {
     let line =
         `${r.name} (${getOccupants(r.name)} occupants) is available for Rs. ${p} plus taxes per night.`;
 
-    if (
-        r.name === "The Glamper room" &&
-        r.available > 0
+    if(
+        r.name==="The Glamper room" &&
+        r.available>0
     )
 
         line +=
             ` (We have ${r.available} Glamper room${r.available===1?"":"s"})`;
 
-    else if (
-        r.name === "The Camper room" &&
-        r.available > 0
+    else if(
+        r.name==="The Camper room" &&
+        r.available>0
     )
 
         line +=
             ` (We have ${r.available} Camper room${r.available===1?"":"s"})`;
 
-    else if (
-        r.name === "The Surveyor room" &&
-        r.available > 0
+    else if(
+        r.name==="The Surveyor room" &&
+        r.available>0
     )
 
         line +=
             ` (We have ${r.available} Surveyor room${r.available===1?"":"s"})`;
 
-    else if (
-        r.name === "The Surveyor suite room" &&
-        r.available > 0
+    else if(
+        r.name==="The Surveyor suite room" &&
+        r.available>0
     )
 
         line +=
             ` (We have ${r.available} Surveyor suite room${r.available===1?"":"s"})`;
 
-    else if (
-        r.name === "The Zenith luxury cottage" &&
-        r.available > 0
+    else if(
+        r.name==="The Zenith luxury cottage" &&
+        r.available>0
     )
 
         line +=
             ` (We have ${r.available} Zenith luxury cottage${r.available===1?"":"s"})`;
 
-    else if (
-        r.name === "The Twin luxury cottage"
+    else if(
+        r.name==="The Twin luxury cottage"
     )
 
         line +=
             " (2 Rooms next to each other)";
 
-    else if (
-        r.name === "The Villa"
+    else if(
+        r.name==="The Villa"
     )
 
         line +=
@@ -1333,10 +1364,10 @@ function buildRoomLine(r) {
 
 
 /* =========================================================
-   CHECK AVAILABILITY
+   AVAILABILITY
 ========================================================= */
 
-async function checkAvailability() {
+async function checkAvailability(){
 
     hideAlert();
 
@@ -1351,7 +1382,7 @@ async function checkAvailability() {
         checkOut.value;
 
 
-    if (!start || !end) {
+    if(!start||!end){
 
         showAlert(
             "Please select both dates.",
@@ -1363,7 +1394,7 @@ async function checkAvailability() {
     }
 
 
-    if (end <= start) {
+    if(end<=start){
 
         showAlert(
             "Check-out date must be after check-in date.",
@@ -1382,7 +1413,7 @@ async function checkAvailability() {
         '<span class="loading"><span class="spinner"></span>Fetching live availability...</span>';
 
 
-    try {
+    try{
 
         const response =
             await fetch(
@@ -1392,14 +1423,14 @@ async function checkAvailability() {
 
         let data;
 
-        try {
+        try{
 
             data =
                 await response.json();
 
         }
 
-        catch {
+        catch{
 
             throw new Error(
                 "The server returned an invalid response."
@@ -1408,19 +1439,19 @@ async function checkAvailability() {
         }
 
 
-        if (!response.ok)
+        if(!response.ok)
 
             throw new Error(
-                data.detail ||
+                data.detail||
                 "Unable to fetch room availability."
             );
 
 
-        if (
-            !data.available ||
-            !data.rooms ||
+        if(
+            !data.available||
+            !data.rooms||
             !data.rooms.length
-        ) {
+        ){
 
             showAlert(
                 "No rooms are available for the selected dates.",
@@ -1437,21 +1468,22 @@ async function checkAvailability() {
             "success"
         );
 
+
         renderSummary(data);
 
     }
 
-    catch(e) {
+    catch(e){
 
         showAlert(
-            e.message ||
+            e.message||
             "Unable to fetch room availability.",
             "error"
         );
 
     }
 
-    finally {
+    finally{
 
         searchButton.disabled =
             false;
@@ -1469,35 +1501,32 @@ async function checkAvailability() {
    ORIGINAL
 ========================================================= */
 
-function renderSummary(data) {
+function renderSummary(data){
 
     const s =
         new Date(
-            data.check_in +
+            data.check_in+
             "T00:00:00"
         );
 
     const e =
         new Date(
-            data.check_out +
+            data.check_out+
             "T00:00:00"
         );
 
     const dateText =
         `${formatDate(s)} - ${formatDate(e)}`;
 
-
     let html =
         `<div class="summary-intro">For ${dateText}, Here is the Room availability with prices below:</div>`;
 
-
-    for (
+    for(
         const r of data.rooms
     )
 
         html +=
             `<div class="room-line">${escapeHtml(buildRoomLine(r))}</div>`;
-
 
     summaryContent.innerHTML =
         html;
@@ -1513,28 +1542,28 @@ function renderSummary(data) {
 
 
 /* =========================================================
-   COPY SUMMARY
+   COPY
 ========================================================= */
 
-function buildCopyText(data) {
+function buildCopyText(data){
 
     const s =
         new Date(
-            data.check_in +
+            data.check_in+
             "T00:00:00"
         );
 
     const e =
         new Date(
-            data.check_out +
+            data.check_out+
             "T00:00:00"
         );
 
-    const lines = [
+    const lines=[
         `For ${formatDate(s)} - ${formatDate(e)}, Here is the Room availability with prices below:`
     ];
 
-    for (
+    for(
         const r of data.rooms
     )
 
@@ -1547,21 +1576,16 @@ function buildCopyText(data) {
 }
 
 
-/* =========================================================
-   COPY BUTTON
-========================================================= */
-
-async function copySummary() {
+async function copySummary(){
 
     const text =
-        window.summaryCopyText ||
+        window.summaryCopyText||
         "";
 
-    if (!text)
+    if(!text)
         return;
 
-
-    try {
+    try{
 
         await navigator.clipboard
             .writeText(text);
@@ -1570,7 +1594,7 @@ async function copySummary() {
 
     }
 
-    catch {
+    catch{
 
         const t =
             document.createElement(
@@ -1594,10 +1618,9 @@ async function copySummary() {
 
         t.select();
 
+        let ok=false;
 
-        let ok = false;
-
-        try {
+        try{
 
             ok =
                 document.execCommand(
@@ -1606,17 +1629,15 @@ async function copySummary() {
 
         }
 
-        catch {}
-
+        catch{}
 
         t.remove();
 
-
-        if (ok)
+        if(ok)
 
             showCopied();
 
-        else {
+        else{
 
             copyButton.innerHTML =
                 "✕ Failed";
@@ -1633,7 +1654,7 @@ async function copySummary() {
 }
 
 
-function showCopied() {
+function showCopied(){
 
     copyButton.innerHTML =
         "✓ Copied";
@@ -1653,7 +1674,7 @@ function showCopied() {
 }
 
 
-function resetCopyButton() {
+function resetCopyButton(){
 
     copyButton.innerHTML =
         "📋";
@@ -1672,7 +1693,7 @@ function resetCopyButton() {
    ESCAPE HTML
 ========================================================= */
 
-function escapeHtml(v) {
+function escapeHtml(v){
 
     return String(v)
 
