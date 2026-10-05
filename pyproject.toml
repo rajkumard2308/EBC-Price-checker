@@ -1,0 +1,11 @@
+[project]
+name = "ebc-room-availability"
+version = "0.1.0"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "fastapi",
+    "requests"
+]
+
+[tool.vercel]
+entrypoint = "api.availability:app"
