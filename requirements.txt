@@ -1,3 +1,3 @@
 fastapi
 requests
-dotenv
+python-dotenv
