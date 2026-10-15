@@ -4,7 +4,7 @@
 
 Set these in Vercel:
 
-- `IPMS_HOTEL_CODE` = `23400`
+- `IPMS_HOTEL_CODE` = your Hotel Code
 - `IPMS_OPENAPI_KEY` = your IPMS247 OpenAPI key
 
 ## Deploy
