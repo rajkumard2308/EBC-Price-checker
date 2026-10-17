@@ -1752,17 +1752,21 @@ function hideAlert() {
 
 ========================================================= */
 
+
 function getOccupants(n) {
+    const occupants = {
+        "The Camper room": 2,
+        "The Glamper room": 2,
+        "The Surveyor room": 2,
+        "The Surveyor suite room": 2,
+        "The Zenith luxury cottage": 2,
+        "The Twin luxury cottage": 4,
+        "The Villa": 6
+    };
 
-    return n ===
-
-        "The Surveyor suite room"
-
-        ? 4
-
-        : 2;
-
+    return occupants[n] ?? 2;
 }
+
 
 /* =========================================================
 
@@ -1780,9 +1784,18 @@ function buildRoomLine(r){
 
         .toLocaleString("en-IN");
 
-    let line =
+    const occupancyText = {
+        "The Camper room": "2 occupants",
+        "The Glamper room": "2 occupants",
+        "The Surveyor room": "2 occupants",
+        "The Surveyor suite room": "2 occupants",
+        "The Zenith luxury cottage": "2 occupants",
+        "The Twin luxury cottage": "4 occupants",
+        "The Villa": "up to 6 occupants"
+    };
 
-        `${r.name} (${getOccupants(r.name)} occupants) is available for Rs. ${p} plus taxes per night.`;
+    let line =
+        `${r.name} (${occupancyText[r.name] || "2 occupants"}) is available for Rs. ${p} plus taxes per night.`;
 
     if(
 
